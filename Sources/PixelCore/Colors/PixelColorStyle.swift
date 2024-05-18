@@ -9,7 +9,13 @@
 import SwiftUI
 
 @available(iOS 16.0, *)
-public enum PixelColorStyle<Theme: PixelThemeProtocol> {
+public protocol PixelColorStyleProtocol {
+
+    var color: Color { get }
+}
+
+@available(iOS 16.0, *)
+public enum PixelColorStyle<Theme: PixelThemeProtocol>: PixelColorStyleProtocol {
 
     case single(color: Color)
     case themed(colors: [Theme: Color], theme: Theme)

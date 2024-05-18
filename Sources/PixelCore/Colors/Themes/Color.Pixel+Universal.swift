@@ -11,10 +11,11 @@ import SwiftUI
 @available(iOS 16.0, *)
 public extension Color.Pixel {
 
-    struct Universal {
+    enum Universal {
     }
 }
 
+@available(iOS 16.0, *)
 extension Color.Pixel.Universal: PixelColorScheme {
 
     public static let dark1: Color = .init(.Universal.Gray.dark1)
