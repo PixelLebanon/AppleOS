@@ -1,6 +1,6 @@
 //
 //  PixelTests.swift
-//  Pixel
+//  PixelTests
 //
 //  Created by Khaled Chehabeddine on 16/05/2024.
 //  Copyright © 2024 Pixel. All rights reserved.

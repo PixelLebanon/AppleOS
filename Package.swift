@@ -12,9 +12,6 @@ let package = Package(
     ],
     dependencies: [
         // Dependencies declare other packages that this package depends on.
-        // MARK: Local Modules
-
-
         // MARK: Packages
 
 
@@ -25,7 +22,9 @@ let package = Package(
         // Targets are the basic building blocks of a package, defining a module or a test suite.
         // Targets can depend on other targets in this package and products from dependencies.
         .pixelTarget,
-        .pixelTestTarget
+        .pixelTestTarget,
+
+        .pixelCoreTarget
     ]
 )
 
@@ -39,6 +38,8 @@ fileprivate extension Product {
 
     static let pixelProduct: Product = .library(name: .pixel,
                                                 targets: [.pixel])
+    static let pixelCoreProduct: Product = .library(name: .pixelCore,
+                                                    targets: [.pixelCore])
 }
 
 fileprivate extension String {
@@ -46,11 +47,9 @@ fileprivate extension String {
     // MARK: Module
     static let module: String = "Pixel"
 
-    // MARK: Local Modules
-
-
     // MARK: Submodules
     static let pixel: String = "Pixel"
+    static let pixelCore: String = "PixelCore"
 
     // MARK: Packages
     
@@ -70,19 +69,21 @@ fileprivate extension SupportedPlatform {
 fileprivate extension Target {
 
     static let pixelTarget: Target = target(name: .pixel,
+                                            dependencies: [.pixelCoreDependency],
                                             plugins: [.swiftLintPlugin])
     static let pixelTestTarget: Target = testTarget(name: .pixel.testTarget,
                                                     dependencies: [.pixelDependency],
                                                     plugins: [.swiftLintPlugin])
+
+    static let pixelCoreTarget: Target = target(name: .pixelCore,
+                                                plugins: [.swiftLintPlugin])
 }
 
 fileprivate extension Target.Dependency {
 
-    // MARK: Local Modules
-
-
     // MARK: Submodules
     static let pixelDependency: Target.Dependency = byName(name: .pixel)
+    static let pixelCoreDependency: Target.Dependency = byName(name: .pixelCore)
 
     // MARK: Packages
 
